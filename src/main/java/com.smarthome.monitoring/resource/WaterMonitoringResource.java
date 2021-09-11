@@ -1,12 +1,10 @@
 package com.smarthome.monitoring.resource;
 
-public class WaterMonitoringResource extends Sensor<Double> implements Actuator<Boolean>{
+public abstract class WaterMonitoringResource extends Sensor<Double> implements Actuator<Boolean>{
 
-    //logger nel device, serve un delay
     private Boolean isOn;     //Variabile di attuazione (fornitura on/off)
-    private static final String sensorType = "Water-Monitoring";  //tipo di sensore, [acqua, luce, gas]
+    private static final String sensorType = "Water-Monitoring";  //tipo di sensore
     private static final String measureType = "l/s - liter per second"; //unità di misura del sensore
-    //variabili statiche final da passare al costruttore  type ecc kw/h
 
     public WaterMonitoringResource() {
         super(); //posso personalizzare
@@ -20,8 +18,8 @@ public class WaterMonitoringResource extends Sensor<Double> implements Actuator<
         initializeValue(value);
     }
 
-
     //Metodi classe
+    //_________________________
 
     public String getSensorType() {
         return WaterMonitoringResource.sensorType;
@@ -31,23 +29,20 @@ public class WaterMonitoringResource extends Sensor<Double> implements Actuator<
         return WaterMonitoringResource.measureType;
     }
 
-    //Override Sensor metodi
+    //Metodo override Sensor e metodo astratto comportamentale
+    //_______________________________________
+    //_______________________________________
 
     @Override
     public void initializeValue(Double value) {
         this.value = value;
     }
 
-    @Override   //Provvisorio da definire
-    public void sensorBehaviour() {
-        if(this.isOn){
-            this.value += 0.01;
-        }else{
-            this.value = 0.0;
-        }
-    }
+    public abstract void sensorBehaviour();
 
-    //Override attuatore metodi
+    //Interfaccia attuatore
+    //_______________________________________
+    //_______________________________________
 
     @Override
     public void setActuatorState(Boolean isOn) {

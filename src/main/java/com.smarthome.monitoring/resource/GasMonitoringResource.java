@@ -1,12 +1,10 @@
 package com.smarthome.monitoring.resource;
 
-public class GasMonitoringResource extends Sensor<Double> implements Actuator<Boolean>{
+public abstract class GasMonitoringResource extends Sensor<Double> implements Actuator<Boolean>{
 
-    //logger nel device, serve un delay
     private Boolean isOn;     //Variabile di attuazione (fornitura on/off)
-    private static final String sensorType = "Gas-Monitoring";  //tipo di sensore, [acqua, luce, gas]
+    private static final String sensorType = "Gas-Monitoring";  //tipo di sensore
     private static final String measureType = "kg"; //unità di misura del sensore
-    //variabili statiche final da passare al costruttore  type ecc kw/h
 
     public GasMonitoringResource() {
         super(); //posso fare anche personalizzato
@@ -20,8 +18,8 @@ public class GasMonitoringResource extends Sensor<Double> implements Actuator<Bo
         initializeValue(value);
     }
 
-
     //Metodi classe
+    //_________________________
 
     public String getSensorType() {
         return GasMonitoringResource.sensorType;
@@ -31,23 +29,20 @@ public class GasMonitoringResource extends Sensor<Double> implements Actuator<Bo
         return GasMonitoringResource.measureType;
     }
 
-    //Override Sensor metodi
+    //Metodo override Sensor e metodo astratto comportamentale
+    //_______________________________________
+    //_______________________________________
 
     @Override
     public void initializeValue(Double value) {
         this.value = value;
     }
 
-    @Override  //Provvisorio da definire
-    public void sensorBehaviour() {
-        if(this.isOn){
-            this.value += 0.01;
-        }else{
-            this.value = 0.0;
-        }
-    }
+    public abstract void sensorBehaviour();
 
-    //Override attuatore metodi
+    //Interfaccia attuatore
+    //_______________________________________
+    //_______________________________________
 
     @Override
     public void setActuatorState(Boolean isOn) {

@@ -42,9 +42,7 @@ public abstract class Sensor<T> {
     //Gestione comportamentale del dispositivo sulla variabile value
     //..............................................................
 
-    public abstract void initializeValue(T value);
-
-    public abstract void sensorBehaviour();  //comportamento del sensore sulla variabile value
+    public abstract void initializeValue(T value);  //Possibilità di inizializzazione personalizzata per una sottoclasse
 
     public T updatedValue() {
         return this.value;

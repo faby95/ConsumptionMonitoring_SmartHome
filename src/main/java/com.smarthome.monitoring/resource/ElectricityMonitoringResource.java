@@ -1,14 +1,10 @@
 package com.smarthome.monitoring.resource;
 
-//logger, delay, comportamento
+public abstract class ElectricityMonitoringResource extends Sensor<Double> implements Actuator<Boolean>{
 
-public class ElectricityMonitoringResource extends Sensor<Double> implements Actuator<Boolean>{
-
-    //logger nel device, serve un delay
     private Boolean isOn;     //Variabile di attuazione (fornitura on/off)
-    private static final String sensorType = "Electricity-Monitoring";  //tipo di sensore, [acqua, luce, gas]
+    private static final String sensorType = "Electricity-Monitoring";  //tipo di sensore
     private static final String measureType = "kWh - kilowatt-hour"; //unità di misura del sensore
-    //variabili statiche final da passare al costruttore  type ecc kw/h
 
     public ElectricityMonitoringResource() {
         super();  //Costruttore della classe astratta Sensor senza parametri
@@ -33,7 +29,7 @@ public class ElectricityMonitoringResource extends Sensor<Double> implements Act
         return ElectricityMonitoringResource.measureType;
     }
 
-    //Metodi override Sensor
+    //Metodo override Sensor e metodo astratto comportamentale
     //_______________________________________
     //_______________________________________
 
@@ -42,14 +38,7 @@ public class ElectricityMonitoringResource extends Sensor<Double> implements Act
         this.value = value;
     }
 
-    @Override  //provvisorio da definire
-    public void sensorBehaviour() {
-        if(this.isOn){
-            this.value += 0.01;
-        }else{
-            this.value = 0.0;
-        }
-    }
+    public abstract void sensorBehaviour();
 
     //Interfaccia attuatore
     //_______________________________________
