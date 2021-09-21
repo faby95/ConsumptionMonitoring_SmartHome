@@ -7,15 +7,15 @@ public abstract class WaterMonitoringResource extends Sensor<Double> implements 
     private static final String measureType = "l/s - liter per second"; //unità di misura del sensore
 
     public WaterMonitoringResource() {
-        super(); //posso personalizzare
+        super(); //Costruttore della classe astratta Sensor senza parametri
         setActuatorState(true);
         initializeValue(0.0);
     }
 
-    public WaterMonitoringResource(String id, String deviceName, Boolean isOn, Double value) {
+    public WaterMonitoringResource(String id, String deviceName, Boolean isOn) {
         super(id, deviceName);
         setActuatorState(isOn);
-        initializeValue(value);
+        initializeValue(0.0);
     }
 
     //Metodi classe

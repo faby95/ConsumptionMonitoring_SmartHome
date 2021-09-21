@@ -44,8 +44,20 @@ public abstract class Sensor<T> {
 
     public abstract void initializeValue(T value);  //Possibilità di inizializzazione personalizzata per una sottoclasse
 
+    public void setValue(T value) { this.value = value; }
+
     public T updatedValue() {
         return this.value;
     }
 
+    //__________________________________________________________________________________________________________________
+
+    @Override
+    public String toString() {
+        return "Sensor{" +
+                "id='" + id + '\'' +
+                ", deviceName='" + deviceName + '\'' +
+                ", value=" + value +
+                '}';
+    }
 }

@@ -7,15 +7,15 @@ public abstract class GasMonitoringResource extends Sensor<Double> implements Ac
     private static final String measureType = "kg"; //unità di misura del sensore
 
     public GasMonitoringResource() {
-        super(); //posso fare anche personalizzato
+        super();  //Costruttore della classe astratta Sensor senza parametri
         setActuatorState(true);
         initializeValue(0.0);
     }
 
-    public GasMonitoringResource(String id, String deviceName, Boolean isOn, Double value) {
+    public GasMonitoringResource(String id, String deviceName, Boolean isOn) {
         super(id, deviceName);
         setActuatorState(isOn);
-        initializeValue(value);
+        initializeValue(0.0);
     }
 
     //Metodi classe

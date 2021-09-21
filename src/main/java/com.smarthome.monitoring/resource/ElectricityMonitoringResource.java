@@ -12,10 +12,10 @@ public abstract class ElectricityMonitoringResource extends Sensor<Double> imple
         initializeValue(0.0);
     }
 
-    public ElectricityMonitoringResource(String id, String deviceName, Boolean isOn, Double value) {
+    public ElectricityMonitoringResource(String id, String deviceName, Boolean isOn) {
         super(id, deviceName);  //Costruttore classe astratta Sensor
         setActuatorState(isOn);
-        initializeValue(value);
+        initializeValue(0.0);
     }
 
     //Metodi classe
