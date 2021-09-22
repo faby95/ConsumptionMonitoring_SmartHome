@@ -148,6 +148,14 @@ public class PolicyManager {
                         changeGasForniture(msg.getGasForniture());
                         changeWaterForniture(msg.getWaterForniture());
                         logger.debug("All new settings changed");
+                        //Pubblico i nuovi stati imposti
+                        StatesMessage updatedStates = new StatesMessage(System.currentTimeMillis(),
+                                SmartHome.smartHome,
+                                electricForniture,
+                                waterForniture,
+                                gasForniture);
+                        publishData(pubStatusRecources,SmartHome.topicState,Messages.buildStatesJsonMessage(updatedStates),1,true);
+                        logger.info("New updated from smartphone retain states published E:{} G:{} W:{}",updatedStates.getElectricForniture(),updatedStates.getGasForniture(),updatedStates.getWaterForniture());
                     }
                 }
                 else{
